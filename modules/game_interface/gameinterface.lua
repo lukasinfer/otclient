@@ -256,12 +256,12 @@ function show()
     logoutButton:setTooltip(tr('Logout'))
 
     setupViewMode(0)
+    setupViewMode(1)
     if g_platform.isMobile() then
         mobileConfig.mobileWidthJoystick = modules.game_joystick.getPanel():getWidth()
         mobileConfig.mobileWidthShortcuts = modules.game_shortcuts.getPanel():getWidth()
         mobileConfig.mobileHeightJoystick = modules.game_joystick.getPanel():getHeight()
         mobileConfig.mobileHeightShortcuts = modules.game_shortcuts.getPanel():getHeight()
-        setupViewMode(1)
         setupViewMode(2)
     end
 
@@ -1556,6 +1556,7 @@ function setupViewMode(mode)
     elseif mode == 2 then
         local limit = limitedZoom and not g_game.isGM()
         gameMapPanel:setLimitVisibleRange(limit)
+        gameMapPanel:setKeepAspectRatio(false)
         gameMapPanel:setZoom(11)
         gameMapPanel:setVisibleDimension({
             width = 15,
